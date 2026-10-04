@@ -1,3 +1,59 @@
+#!/usr/bin/env python3
+# fix4_orionsguard.py — uses Windows cmd rmdir to bypass OneDrive lock
+import os, subprocess, sys
+
+ROOT = os.path.dirname(os.path.abspath(__file__))
+
+def w(rel, content):
+    path = os.path.join(ROOT, *rel.split("/"))
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    with open(path, "w", encoding="utf-8") as f:
+        f.write(content)
+    print(f"  wrote:   {rel}")
+
+def rm_dir(rel):
+    path = os.path.join(ROOT, *rel.split("/"))
+    if os.path.isdir(path):
+        r = subprocess.run(["cmd", "/c", "rd", "/s", "/q", path], capture_output=True)
+        if r.returncode == 0:
+            print(f"  deleted dir:  {rel}")
+        else:
+            print(f"  WARN: could not delete {rel} — delete it manually in Explorer")
+    else:
+        print(f"  skip:    {rel} (already gone)")
+
+def rm_file(rel):
+    path = os.path.join(ROOT, *rel.split("/"))
+    if os.path.isfile(path):
+        os.remove(path)
+        print(f"  deleted file: {rel}")
+    else:
+        print(f"  skip:    {rel} (already gone)")
+
+print("=" * 60)
+print("  Orion's Guard — Strip to Static Site (fix4)")
+print("=" * 60)
+
+print("\n  Step 1: Deleting blog / collection code ...")
+rm_dir("src/pages/blog")
+rm_dir("src/content")
+rm_file("src/content.config.ts")
+rm_file("src/pages/search.astro")
+rm_file("src/pages/rss.xml.js")
+rm_file("fix_orionsguard.py")
+rm_file("fix2_orionsguard.py")
+rm_file("fix3_orionsguard.py")
+
+print("\n  Step 2: Writing clean static files ...")
+
+w("astro.config.mjs", """\
+import { defineConfig } from 'astro';
+export default defineConfig({
+  site: 'https://orionsguard.net',
+});
+""")
+
+w("src/pages/index.astro", """\
 ---
 const services = [
   { icon: "🛡️", title: "Compliance Consulting",       desc: "Navigate HIPAA, PCI-DSS, SOC 2, and CMMC with practical, cost-effective strategies built for SMBs." },
@@ -143,3 +199,24 @@ const services = [
 
 </body>
 </html>
+""")
+
+print("\n  Step 3: Committing and pushing ...")
+for cmd in [
+    ["git", "add", "-A"],
+    ["git", "commit", "-m", "simplify: static services page, no blog or collections"],
+    ["git", "push"],
+]:
+    print("  $", " ".join(cmd))
+    r = subprocess.run(cmd, cwd=ROOT, capture_output=True, text=True)
+    if r.stdout.strip(): print("  ", r.stdout.strip())
+    if r.returncode != 0:
+        print("\n  ERROR:", r.stderr.strip())
+        print("  Run manually: git add -A && git commit -m 'simplify' && git push")
+        sys.exit(1)
+
+print()
+print("=" * 60)
+print("  Done! Cloudflare is rebuilding now.")
+print("  dash.cloudflare.com -> Pages -> orionsguardsite")
+print("=" * 60)
