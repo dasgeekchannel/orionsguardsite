@@ -1,17 +1,11 @@
-// @ts-check
-import { defineConfig } from "astro/config";
-import mdx from "@astrojs/mdx";
+// astro.config.mjs — Orion's Guard
 import sitemap from "@astrojs/sitemap";
+import { defineConfig } from "astro/config";
 
-import cloudflare from "@astrojs/cloudflare";
-
-// https://astro.build/config
 export default defineConfig({
-	site: "https://example.com",
-	integrations: [mdx(), sitemap()],
-	adapter: cloudflare({
-		platformProxy: {
-			enabled: true,
-		},
-	}),
+  site: "https://orionsguard.net",
+  // output defaults to "static" — Astro pre-renders all pages to plain HTML
+  // The dist/ folder is deployed to Cloudflare Pages (free, no Workers needed)
+  integrations: [sitemap()],
 });
+

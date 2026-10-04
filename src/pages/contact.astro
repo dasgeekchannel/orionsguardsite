@@ -1,0 +1,215 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Contact" description="Book a free discovery call with Orion's Guard. Get expert cybersecurity consulting tailored to your small or mid-size business.">
+
+  <div class="og-page-hero">
+    <div class="og-page-hero-inner">
+      <nav class="og-breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a><span>/</span><span>Contact</span>
+      </nav>
+      <h1 class="og-page-title">Let's Talk Security</h1>
+      <p class="og-page-desc">Book a free 30-minute discovery call — no obligations, no sales pressure.</p>
+    </div>
+  </div>
+
+  <div class="og-page-body">
+    <div class="og-contact-layout">
+
+      <!-- Left: Info -->
+      <div class="og-contact-info">
+        <h2>What to expect</h2>
+        <p>
+          During your discovery call we'll review your current security posture, identify your most pressing risks, and recommend the right engagement. Whether you need compliance help, a risk assessment, or ongoing vCISO support — we'll give you a straight answer.
+        </p>
+        <ul class="og-check-list" style="margin-top:1.25rem;">
+          <li>30-minute conversation, zero fluff</li>
+          <li>We review your current tech stack &amp; compliance status</li>
+          <li>You get a clear next-step recommendation — free</li>
+          <li>No long-term commitment required to start</li>
+        </ul>
+
+        <div style="margin-top:2rem; padding-top:1.5rem; border-top:1px solid var(--c-border);">
+          <h3 style="font-size:.9rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--c-text-dim); margin-bottom:.75rem;">Direct Contact</h3>
+          <a href="mailto:contact@orionsguard.net" style="display:flex; align-items:center; gap:.6rem; color:var(--c-text-soft); font-size:.9rem; text-decoration:none; margin-bottom:.5rem;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            contact@orionsguard.net
+          </a>
+          <a href="https://linkedin.com/company/orionsguard" target="_blank" rel="noopener" style="display:flex; align-items:center; gap:.6rem; color:var(--c-text-soft); font-size:.9rem; text-decoration:none;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            LinkedIn
+          </a>
+        </div>
+      </div>
+
+      <!-- Right: Form -->
+      <div class="og-contact-form-wrap">
+        <form
+          id="og-contact-form"
+          action="https://api.web3forms.com/submit"
+          method="POST"
+          class="og-contact-form"
+          novalidate
+        >
+          <!-- Web3Forms access key — replace with your actual key from web3forms.com -->
+          <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY" />
+          <input type="hidden" name="subject" value="New Inquiry — Orion's Guard" />
+          <input type="hidden" name="redirect" value="https://orionsguard.net/contact/?sent=1" />
+          <!-- Honeypot spam protection -->
+          <input type="checkbox" name="botcheck" style="display:none;" tabindex="-1" autocomplete="off" />
+
+          <div class="og-field">
+            <label for="name">Full Name <span aria-hidden="true">*</span></label>
+            <input type="text" id="name" name="name" required autocomplete="name" placeholder="Jane Smith" />
+          </div>
+
+          <div class="og-field">
+            <label for="email">Business Email <span aria-hidden="true">*</span></label>
+            <input type="email" id="email" name="email" required autocomplete="email" placeholder="jane@yourcompany.com" />
+          </div>
+
+          <div class="og-field">
+            <label for="company">Company Name</label>
+            <input type="text" id="company" name="company" autocomplete="organization" placeholder="Acme Corp" />
+          </div>
+
+          <div class="og-field">
+            <label for="service">Service of Interest</label>
+            <select id="service" name="service">
+              <option value="">Select a service…</option>
+              <option value="compliance">Compliance Consulting (GDPR, HIPAA, SOC 2, CMMC)</option>
+              <option value="vciso">Virtual CISO (vCISO)</option>
+              <option value="risk">Risk Assessment</option>
+              <option value="training">Security Awareness Training</option>
+              <option value="ir">Incident Response</option>
+              <option value="architecture">Security Architecture</option>
+              <option value="other">Other / Not Sure Yet</option>
+            </select>
+          </div>
+
+          <div class="og-field">
+            <label for="message">How can we help? <span aria-hidden="true">*</span></label>
+            <textarea id="message" name="message" rows="5" required placeholder="Tell us about your business, your biggest security concern, or what you're trying to accomplish…"></textarea>
+          </div>
+
+          <button type="submit" class="og-btn og-btn-primary" style="width:100%; justify-content:center;" id="og-submit-btn">
+            Send Message
+          </button>
+
+          <div id="og-form-success" hidden style="margin-top:1rem; padding:1rem; background:rgba(6,182,212,.08); border:1px solid rgba(6,182,212,.25); border-radius:var(--radius); color:var(--c-cyan); font-size:.9rem; text-align:center;">
+            ✓ Message sent! We'll be in touch within one business day.
+          </div>
+          <div id="og-form-error" hidden style="margin-top:1rem; padding:1rem; background:rgba(239,68,68,.08); border:1px solid rgba(239,68,68,.25); border-radius:var(--radius); color:#f87171; font-size:.9rem; text-align:center;">
+            Something went wrong. Please email us directly at contact@orionsguard.net
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</Layout>
+
+<style>
+.og-contact-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 4rem;
+  align-items: start;
+}
+.og-contact-info h2 {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--c-text);
+  margin-bottom: .75rem;
+  letter-spacing: -.025em;
+}
+.og-contact-info p {
+  color: var(--c-text-soft);
+  line-height: 1.8;
+  font-size: .9rem;
+}
+.og-check-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: .6rem;
+}
+.og-check-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: .5rem;
+  font-size: .875rem;
+  color: var(--c-text-soft);
+}
+.og-check-list li::before {
+  content: '';
+  display: inline-block;
+  width: 16px; height: 16px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2306b6d4' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E") center/contain no-repeat;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.og-contact-form-wrap {
+  background: var(--c-bg-card);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+}
+.og-contact-form { display: flex; flex-direction: column; gap: 1.25rem; }
+.og-field { display: flex; flex-direction: column; gap: .4rem; }
+.og-field label { font-size: .8rem; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--c-text-dim); }
+.og-field input, .og-field select, .og-field textarea {
+  background: var(--c-bg-2);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius);
+  color: var(--c-text);
+  font-size: .9rem;
+  padding: .65rem .85rem;
+  transition: border-color var(--t), box-shadow var(--t);
+  font-family: inherit;
+  width: 100%;
+  box-sizing: border-box;
+}
+.og-field input:focus, .og-field select:focus, .og-field textarea:focus {
+  outline: none;
+  border-color: var(--c-blue-mid);
+  box-shadow: 0 0 0 3px rgba(37,99,235,.15);
+}
+.og-field textarea { resize: vertical; min-height: 120px; }
+.og-field input::placeholder, .og-field textarea::placeholder { color: var(--c-text-dim); }
+@media(max-width:768px) {
+  .og-contact-layout { grid-template-columns: 1fr; gap: 2rem; }
+}
+</style>
+
+<script>
+// Show success/error states without full page reload
+const form = document.getElementById('og-contact-form') as HTMLFormElement;
+const btn = document.getElementById('og-submit-btn') as HTMLButtonElement;
+const successMsg = document.getElementById('og-form-success');
+const errorMsg = document.getElementById('og-form-error');
+
+if (form) {
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    btn.textContent = 'Sending…';
+    btn.disabled = true;
+    try {
+      const res = await fetch(form.action, { method: 'POST', body: new FormData(form) });
+      if (res.ok) {
+        form.reset();
+        if (successMsg) successMsg.hidden = false;
+      } else {
+        if (errorMsg) errorMsg.hidden = false;
+      }
+    } catch {
+      if (errorMsg) errorMsg.hidden = false;
+    } finally {
+      btn.textContent = 'Send Message';
+      btn.disabled = false;
+    }
+  });
+}
+</script>
+

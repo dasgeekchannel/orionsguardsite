@@ -1,50 +1,214 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+// src/pages/index.astro — Orion's Guard Homepage
+import Layout from '../layouts/Layout.astro';
 ---
 
-<!doctype html>
-<html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header />
-		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
-				template serves as a lightweight, minimally-styled starting point for anyone looking to build
-				a personal website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to <a href="https://docs.astro.build/"
-					>read the docs
-				</a> or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out <a
-					href="https://github.com/Charca/astro-blog-template"
-					>astro-blog-template
-				</a> by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
-		</main>
-		<Footer />
-	</body>
-</html>
+<Layout isHome={true} title="Orion's Guard" description="Enterprise-grade cybersecurity consulting for small and mid-size businesses. GDPR, HIPAA, SOC 2, CMMC, PCI-DSS compliance — practical, budget-friendly, scalable security.">
+
+  <!-- ── HERO ── -->
+  <section class="og-hero" aria-label="Hero">
+    <div class="og-hero-grid" aria-hidden="true"></div>
+    <div class="og-hero-glow" aria-hidden="true"></div>
+    <div class="og-hero-body">
+      <div class="og-eyebrow">
+        <span class="og-dot" aria-hidden="true"></span>
+        Cybersecurity Consulting for Small &amp; Mid-Size Business
+      </div>
+
+      <h1 class="og-hero-h1">
+        Protect What<br /><em>You've Built.</em>
+      </h1>
+
+      <p class="og-hero-lead">
+        Orion's Guard is a cybersecurity consulting firm built for small and medium-sized businesses.
+        We help startups, growing companies, and established SMBs navigate compliance — GDPR, HIPAA, SOC&nbsp;2,
+        and beyond — with practical, scalable security strategies that protect your data without breaking your budget.
+      </p>
+
+      <div class="og-hero-btns">
+        <a href="/contact/" class="og-btn og-btn-primary">Book a Free Discovery Call</a>
+        <a href="/services/" class="og-btn og-btn-outline">Explore Services</a>
+      </div>
+
+      <div class="og-chips" aria-label="Compliance frameworks we cover">
+        {["GDPR","HIPAA","SOC 2","CMMC","PCI-DSS","NIST CSF","vCISO","Zero Trust"].map(c => (
+          <span class="og-chip">{c}</span>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── STATS STRIP ── -->
+  <section class="og-stats" aria-label="Cybersecurity statistics">
+    <div class="og-stats-inner">
+      <div class="og-stat">
+        <span class="og-stat-num">$10.5T</span>
+        <span class="og-stat-label">Global cybercrime cost by 2025 — and rising every year</span>
+      </div>
+      <div class="og-stat-div" aria-hidden="true"></div>
+      <div class="og-stat">
+        <span class="og-stat-num">43%</span>
+        <span class="og-stat-label">Of cyberattacks target small businesses specifically</span>
+      </div>
+      <div class="og-stat-div" aria-hidden="true"></div>
+      <div class="og-stat">
+        <span class="og-stat-num">60%</span>
+        <span class="og-stat-label">Of SMBs close within six months of a breach</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SERVICES PREVIEW ── -->
+  <section class="og-page-body" aria-label="Our services">
+    <div style="text-align:center; margin-bottom:3rem;">
+      <div class="og-eyebrow" style="justify-content:center;">What We Do</div>
+      <h2 style="font-size:clamp(1.6rem,4vw,2.25rem); font-weight:900; letter-spacing:-.03em; color:var(--c-text); margin-bottom:.75rem;">
+        Enterprise Security, SMB Budget
+      </h2>
+      <p style="color:var(--c-text-soft); max-width:560px; margin:0 auto; font-size:1rem; line-height:1.7;">
+        We deliver the same caliber of cybersecurity strategy that Fortune 500 companies rely on — scaled and priced for organizations like yours.
+      </p>
+    </div>
+
+    <div class="og-services-grid">
+      {[
+        {
+          icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`,
+          title: "Compliance Consulting",
+          desc: "Navigate GDPR, HIPAA, SOC 2, CMMC, and PCI-DSS with a clear roadmap — no surprises, no bloated retainers.",
+          href: "/services/#compliance",
+        },
+        {
+          icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M6 20v-2a6 6 0 0 1 12 0v2"/></svg>`,
+          title: "vCISO Services",
+          desc: "A seasoned Chief Information Security Officer on your team — without the executive salary. Strategic oversight on demand.",
+          href: "/services/#vciso",
+        },
+        {
+          icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><path d="M11 8v6"/><path d="M8 11h6"/></svg>`,
+          title: "Risk Assessments",
+          desc: "Identify vulnerabilities before attackers do. Comprehensive gap analysis mapped to your business operations.",
+          href: "/services/#risk",
+        },
+        {
+          icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>`,
+          title: "Security Training",
+          desc: "Your employees are your first — and often weakest — line of defense. We make security awareness stick.",
+          href: "/services/#training",
+        },
+        {
+          icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>`,
+          title: "Incident Response",
+          desc: "When the worst happens, response speed is everything. We provide rapid triage, containment, and recovery planning.",
+          href: "/services/#ir",
+        },
+        {
+          icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg>`,
+          title: "Security Architecture",
+          desc: "Zero Trust frameworks, network segmentation, cloud security — built right from the start so you don't have to retrofit later.",
+          href: "/services/#architecture",
+        },
+      ].map(svc => (
+        <a href={svc.href} class="og-svc-card" aria-label={svc.title}>
+          <div class="og-svc-icon" aria-hidden="true" set:html={svc.icon} />
+          <h3 class="og-svc-title">{svc.title}</h3>
+          <p class="og-svc-desc">{svc.desc}</p>
+          <span class="og-svc-cta">Learn more →</span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- ── TRUST SECTION ── -->
+  <section style="background:var(--c-bg-2); border-top:1px solid var(--c-border); border-bottom:1px solid var(--c-border); padding:4rem 1.5rem;">
+    <div style="max-width:var(--max-w); margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center;">
+      <div>
+        <div class="og-eyebrow">Why Orion's Guard</div>
+        <h2 style="font-size:clamp(1.5rem,3.5vw,2.1rem); font-weight:900; letter-spacing:-.03em; color:var(--c-text); margin-bottom:1rem; line-height:1.15;">
+          Cybersecurity expertise that scales with your business
+        </h2>
+        <p style="color:var(--c-text-soft); line-height:1.8; margin-bottom:1.5rem;">
+          Orion's Guard delivers enterprise-caliber cybersecurity consulting for organizations that don't have enterprise-sized budgets. Our solutions are robust, budget-friendly, and designed to grow with your client as your business evolves.
+        </p>
+        <ul style="list-style:none; display:flex; flex-direction:column; gap:.75rem;">
+          {[
+            "Flat-rate and retainer engagements — no surprise invoices",
+            "Frameworks tailored to your industry and size",
+            "Plain-English reporting — no jargon, just action items",
+            "Long-term partner, not a one-time vendor",
+          ].map(item => (
+            <li style="display:flex; align-items:flex-start; gap:.6rem; color:var(--c-text-soft); font-size:.9rem;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--c-cyan)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0; margin-top:2px;"><polyline points="20 6 9 17 4 12"/></svg>
+              {item}
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div style="display:flex; justify-content:center; align-items:center;">
+        <img src="/images/og-mascot.png" alt="Orion's Guard mascot — a honey badger in a circuit-patterned hoodie" style="max-width:280px; height:auto; filter:drop-shadow(0 0 40px rgba(37,99,235,.3));" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA BANNER ── -->
+  <section style="padding:5rem 1.5rem; text-align:center; background:var(--c-bg);">
+    <div style="max-width:640px; margin:0 auto;">
+      <div class="og-eyebrow" style="justify-content:center;">Ready to Get Started?</div>
+      <h2 style="font-size:clamp(1.6rem,4vw,2.25rem); font-weight:900; letter-spacing:-.03em; color:var(--c-text); margin-bottom:1rem;">
+        Let's secure your business — together
+      </h2>
+      <p style="color:var(--c-text-soft); line-height:1.7; margin-bottom:2rem;">
+        Book a free, no-obligation discovery call. We'll review your current security posture and show you exactly where to focus.
+      </p>
+      <div style="display:flex; justify-content:center; gap:1rem; flex-wrap:wrap;">
+        <a href="/contact/" class="og-btn og-btn-primary">Book Free Discovery Call</a>
+        <a href="/services/" class="og-btn og-btn-outline">View All Services</a>
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+.og-services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 3rem;
+}
+.og-svc-card {
+  background: var(--c-bg-card);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+  transition: border-color var(--t), transform var(--t), box-shadow var(--t);
+  color: inherit;
+  text-decoration: none;
+}
+.og-svc-card:hover {
+  border-color: var(--c-blue-mid);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 32px rgba(37,99,235,.12);
+}
+.og-svc-icon {
+  width: 48px; height: 48px;
+  background: rgba(37,99,235,.08);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--c-blue-light);
+  flex-shrink: 0;
+}
+.og-svc-title { font-size: 1rem; font-weight: 700; color: var(--c-text); }
+.og-svc-desc { font-size: .88rem; color: var(--c-text-soft); line-height: 1.6; flex: 1; }
+.og-svc-cta { font-size: .76rem; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--c-blue-light); }
+
+@media(max-width:900px) {
+  .og-trust-split { grid-template-columns: 1fr !important; }
+  .og-trust-split img { max-width: 200px !important; }
+}
+</style>
+

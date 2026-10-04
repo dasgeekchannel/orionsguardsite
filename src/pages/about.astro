@@ -1,62 +1,91 @@
 ---
-import Layout from '../layouts/BlogPost.astro';
+import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout
-	title="About Me"
-	description="Lorem ipsum dolor sit amet"
-	pubDate={new Date('August 08 2021')}
-	heroImage="/blog-placeholder-about.jpg"
->
-	<p>
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-		labore et dolore magna aliqua. Vitae ultricies leo integer malesuada nunc vel risus commodo
-		viverra. Adipiscing enim eu turpis egestas pretium. Euismod elementum nisi quis eleifend quam
-		adipiscing. In hac habitasse platea dictumst vestibulum. Sagittis purus sit amet volutpat. Netus
-		et malesuada fames ac turpis egestas. Eget magna fermentum iaculis eu non diam phasellus
-		vestibulum lorem. Varius sit amet mattis vulputate enim. Habitasse platea dictumst quisque
-		sagittis. Integer quis auctor elit sed vulputate mi. Dictumst quisque sagittis purus sit amet.
-	</p>
+<Layout title="About" description="About Orion's Guard — cybersecurity consulting built for small and mid-size businesses. Learn our mission, approach, and the team behind the shield.">
 
-	<p>
-		Morbi tristique senectus et netus. Id semper risus in hendrerit gravida rutrum quisque non
-		tellus. Habitasse platea dictumst quisque sagittis purus sit amet. Tellus molestie nunc non
-		blandit massa. Cursus vitae congue mauris rhoncus. Accumsan tortor posuere ac ut. Fringilla urna
-		porttitor rhoncus dolor. Elit ullamcorper dignissim cras tincidunt lobortis. In cursus turpis
-		massa tincidunt dui ut ornare lectus. Integer feugiat scelerisque varius morbi enim nunc.
-		Bibendum neque egestas congue quisque egestas diam. Cras ornare arcu dui vivamus arcu felis
-		bibendum. Dignissim suspendisse in est ante in nibh mauris. Sed tempus urna et pharetra pharetra
-		massa massa ultricies mi.
-	</p>
+  <div class="og-page-hero">
+    <div class="og-page-hero-inner">
+      <nav class="og-breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a><span>/</span><span>About</span>
+      </nav>
+      <h1 class="og-page-title">About Orion's Guard</h1>
+      <p class="og-page-desc">Built by security professionals who believe every business deserves enterprise-grade protection.</p>
+    </div>
+  </div>
 
-	<p>
-		Mollis nunc sed id semper risus in. Convallis a cras semper auctor neque. Diam sit amet nisl
-		suscipit. Lacus viverra vitae congue eu consequat ac felis donec. Egestas integer eget aliquet
-		nibh praesent tristique magna sit amet. Eget magna fermentum iaculis eu non diam. In vitae
-		turpis massa sed elementum. Tristique et egestas quis ipsum suspendisse ultrices. Eget lorem
-		dolor sed viverra ipsum. Vel turpis nunc eget lorem dolor sed viverra. Posuere ac ut consequat
-		semper viverra nam. Laoreet suspendisse interdum consectetur libero id faucibus. Diam phasellus
-		vestibulum lorem sed risus ultricies tristique. Rhoncus dolor purus non enim praesent elementum
-		facilisis. Ultrices tincidunt arcu non sodales neque. Tempus egestas sed sed risus pretium quam
-		vulputate. Viverra suspendisse potenti nullam ac tortor vitae purus faucibus ornare. Fringilla
-		urna porttitor rhoncus dolor purus non. Amet dictum sit amet justo donec enim.
-	</p>
+  <div class="og-page-body">
 
-	<p>
-		Mattis ullamcorper velit sed ullamcorper morbi tincidunt. Tortor posuere ac ut consequat semper
-		viverra. Tellus mauris a diam maecenas sed enim ut sem viverra. Venenatis urna cursus eget nunc
-		scelerisque viverra mauris in. Arcu ac tortor dignissim convallis aenean et tortor at. Curabitur
-		gravida arcu ac tortor dignissim convallis aenean et tortor. Egestas tellus rutrum tellus
-		pellentesque eu. Fusce ut placerat orci nulla pellentesque dignissim enim sit amet. Ut enim
-		blandit volutpat maecenas volutpat blandit aliquam etiam. Id donec ultrices tincidunt arcu. Id
-		cursus metus aliquam eleifend mi.
-	</p>
+    <!-- Mission -->
+    <section style="display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center; margin-bottom:4rem;">
+      <div>
+        <div class="og-eyebrow">Our Mission</div>
+        <h2 style="font-size:clamp(1.5rem,3.5vw,2rem); font-weight:900; letter-spacing:-.03em; color:var(--c-text); margin-bottom:1rem; line-height:1.2;">
+          Cybersecurity shouldn't be a luxury
+        </h2>
+        <p style="color:var(--c-text-soft); line-height:1.8; margin-bottom:1rem;">
+          Orion's Guard is a cybersecurity consulting firm providing expertise for small to medium-sized businesses. We work with companies looking to become compliant with GDPR, HIPAA, and other regulations. Our solutions are robust but budget-friendly and can grow with the client.
+        </p>
+        <p style="color:var(--c-text-soft); line-height:1.8;">
+          We believe every company — regardless of size — deserves the same caliber of security strategy that Fortune 500 organizations rely on. We strip out the enterprise overhead and deliver what actually matters: practical, actionable cybersecurity that fits your budget and your roadmap.
+        </p>
+      </div>
+      <div style="display:flex; justify-content:center;">
+        <img src="/images/og-mascot.png" alt="Orion's Guard mascot" style="max-width:260px; height:auto; filter:drop-shadow(0 0 40px rgba(37,99,235,.25));" />
+      </div>
+    </section>
 
-	<p>
-		Tempus quam pellentesque nec nam aliquam sem. Risus at ultrices mi tempus imperdiet. Id porta
-		nibh venenatis cras sed felis eget velit. Ipsum a arcu cursus vitae. Facilisis magna etiam
-		tempor orci eu lobortis elementum. Tincidunt dui ut ornare lectus sit. Quisque non tellus orci
-		ac. Blandit libero volutpat sed cras. Nec tincidunt praesent semper feugiat nibh sed pulvinar
-		proin gravida. Egestas integer eget aliquet nibh praesent tristique magna.
-	</p>
+    <!-- Values -->
+    <section style="margin-bottom:4rem;">
+      <div class="og-eyebrow" style="justify-content:center;">Our Values</div>
+      <h2 style="font-size:clamp(1.4rem,3vw,1.8rem); font-weight:800; text-align:center; letter-spacing:-.03em; color:var(--c-text); margin-bottom:2.5rem;">
+        How we operate
+      </h2>
+      <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(240px, 1fr)); gap:1.25rem;">
+        {[
+          { icon:"🎯", title:"Clarity over complexity", desc:"We translate security requirements into plain English your whole team can understand and act on." },
+          { icon:"📈", title:"Scalable by design", desc:"Our engagements are structured to grow with you — from startup to mid-market without starting over." },
+          { icon:"🤝", title:"Partnership, not transactions", desc:"We're your long-term security partner, not a vendor you call once and forget." },
+          { icon:"💡", title:"Practical outcomes", desc:"Every recommendation comes with clear implementation steps. No jargon, no theoretical frameworks that gather dust." },
+        ].map(v => (
+          <div style="background:var(--c-bg-card); border:1px solid var(--c-border); border-radius:var(--radius-lg); padding:1.75rem;">
+            <span style="font-size:1.75rem; margin-bottom:.75rem; display:block;">{v.icon}</span>
+            <h3 style="font-size:1rem; font-weight:700; color:var(--c-text); margin-bottom:.5rem;">{v.title}</h3>
+            <p style="font-size:.875rem; color:var(--c-text-soft); line-height:1.6;">{v.desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Expertise -->
+    <section style="background:var(--c-bg-card); border:1px solid var(--c-border); border-radius:var(--radius-lg); padding:2.5rem; margin-bottom:4rem;">
+      <div class="og-eyebrow">Areas of Expertise</div>
+      <h2 style="font-size:1.4rem; font-weight:800; color:var(--c-text); letter-spacing:-.025em; margin-bottom:1.5rem;">What we know deeply</h2>
+      <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(200px, 1fr)); gap:.75rem;">
+        {["GDPR","HIPAA","SOC 2","CMMC","PCI-DSS","NIST CSF","Zero Trust","Cloud Security","Incident Response","Risk Assessment","Security Architecture","Security Awareness","vCISO","Penetration Testing","Vendor Risk Management"].map(tag => (
+          <div style="display:flex; align-items:center; gap:.5rem; font-size:.85rem; color:var(--c-text-soft); background:rgba(37,99,235,.06); border:1px solid rgba(37,99,235,.15); border-radius:6px; padding:.5rem .85rem;">
+            <span style="width:6px; height:6px; border-radius:50%; background:var(--c-cyan); flex-shrink:0;"></span>
+            {tag}
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <div style="text-align:center; padding:2rem 0 1rem;">
+      <h2 style="font-size:1.5rem; font-weight:800; color:var(--c-text); letter-spacing:-.03em; margin-bottom:.75rem;">Ready to work together?</h2>
+      <p style="color:var(--c-text-soft); margin-bottom:1.75rem;">Let's start with a free discovery call to understand your security landscape.</p>
+      <a href="/contact/" class="og-btn og-btn-primary">Book a Free Discovery Call</a>
+    </div>
+
+  </div>
 </Layout>
+
+<style>
+@media(max-width:768px) {
+  section[style*="grid-template-columns:1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+}
+</style>
+

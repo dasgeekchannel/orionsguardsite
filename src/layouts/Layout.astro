@@ -1,0 +1,201 @@
+---
+// src/layouts/Layout.astro — Main site layout for Orion's Guard EmDash site
+export interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  isHome?: boolean;
+}
+
+const {
+  title = "Orion's Guard",
+  description = "Enterprise-grade cybersecurity consulting for small and medium-sized businesses. GDPR, HIPAA, SOC 2, CMMC compliance — practical, budget-friendly, scalable.",
+  image = "/images/og-logo.png",
+  isHome = false,
+} = Astro.props;
+
+const siteTitle = isHome ? "Orion's Guard — Cybersecurity Consulting for SMBs" : `${title} | Orion's Guard`;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const navLinks = [
+  { label: "Home",     href: "/" },
+  { label: "Services", href: "/services/" },
+  { label: "About",    href: "/about/" },
+  { label: "Blog",     href: "/blog/" },
+  { label: "Contact",  href: "/contact/" },
+];
+const path = Astro.url.pathname;
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{siteTitle}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonicalURL} />
+  <link rel="icon" type="image/png" href="/images/og-logo.png" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={canonicalURL} />
+  <meta property="og:title" content={siteTitle} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={new URL(image, Astro.site)} />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={siteTitle} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={new URL(image, Astro.site)} />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <!-- Global CSS -->
+  <link rel="stylesheet" href="/styles/global.css" />
+
+  <!-- Reading progress bar (posts only) -->
+  <div id="og-progress" aria-hidden="true"></div>
+</head>
+<body>
+
+  <!-- ── NAVIGATION ── -->
+  <nav class="og-nav" id="og-nav" role="navigation" aria-label="Main">
+    <div class="og-nav-inner">
+      <a href="/" class="og-logo" aria-label="Orion's Guard Home">
+        <img src="/images/og-logo.png" alt="Orion's Guard shield logo" width="36" height="36" />
+        <span class="og-logo-name">Orion<span class="og-logo-accent">'s Guard</span></span>
+      </a>
+
+      <ul class="og-nav-links" role="list">
+        {navLinks.map(link => (
+          <li>
+            <a
+              href={link.href}
+              class={`og-nav-link${path === link.href || (link.href !== '/' && path.startsWith(link.href)) ? ' active' : ''}`}
+            >{link.label}</a>
+          </li>
+        ))}
+      </ul>
+
+      <div class="og-nav-right">
+        <a href="/search/" class="og-nav-search" aria-label="Search">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        </a>
+        <a href="/contact/" class="og-cta-pill">Get Started</a>
+        <button class="og-burger" id="og-burger" aria-label="Toggle menu" aria-expanded="false" aria-controls="og-drawer">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="og-drawer" id="og-drawer" hidden>
+      {navLinks.map(link => (
+        <a href={link.href} class="og-drawer-link">{link.label}</a>
+      ))}
+      <a href="/contact/" class="og-drawer-cta">Get Started</a>
+    </div>
+  </nav>
+
+  <!-- ── MAIN CONTENT ── -->
+  <main id="main-content">
+    <slot />
+  </main>
+
+  <!-- ── FOOTER ── -->
+  <footer class="og-footer" role="contentinfo">
+    <div class="og-footer-inner">
+      <div>
+        <div class="og-footer-logo">
+          <img src="/images/og-logo.png" alt="Orion's Guard logo" height="34" />
+          <span class="og-footer-logo-name">Orion's Guard</span>
+        </div>
+        <p class="og-footer-tagline">
+          Cybersecurity consulting built for<br />small and mid-size businesses.
+        </p>
+      </div>
+
+      <nav class="og-footer-nav" aria-label="Footer navigation">
+        <div class="og-footer-col">
+          <span class="og-footer-col-title">Services</span>
+          <ul role="list">
+            <li><a href="/services/#compliance">Compliance Consulting</a></li>
+            <li><a href="/services/#vciso">vCISO Services</a></li>
+            <li><a href="/services/#risk">Risk Assessments</a></li>
+            <li><a href="/services/#training">Security Training</a></li>
+            <li><a href="/services/#ir">Incident Response</a></li>
+          </ul>
+        </div>
+        <div class="og-footer-col">
+          <span class="og-footer-col-title">Company</span>
+          <ul role="list">
+            <li><a href="/about/">About Us</a></li>
+            <li><a href="/blog/">Blog</a></li>
+            <li><a href="/contact/">Contact</a></li>
+          </ul>
+        </div>
+        <div class="og-footer-col">
+          <span class="og-footer-col-title">Connect</span>
+          <ul role="list">
+            <li><a href="https://linkedin.com/company/orionsguard" target="_blank" rel="noopener">LinkedIn</a></li>
+            <li><a href="mailto:contact@orionsguard.net">Email Us</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+
+    <div class="og-footer-bottom">
+      <span>© {new Date().getFullYear()} Orion's Guard LLC. All rights reserved.</span>
+      <span style="margin-left:auto; display:flex; gap:.75rem;">
+        <a href="/privacy/" style="color:inherit; opacity:.6; font-size:.72rem;">Privacy</a>
+        <a href="/terms/" style="color:inherit; opacity:.6; font-size:.72rem;">Terms</a>
+      </span>
+    </div>
+  </footer>
+
+  <script>
+    // Sticky nav shadow on scroll
+    const nav = document.getElementById('og-nav');
+    if (nav) {
+      window.addEventListener('scroll', () => {
+        nav.classList.toggle('scrolled', window.scrollY > 8);
+      }, { passive: true });
+    }
+
+    // Mobile burger menu
+    const burger = document.getElementById('og-burger');
+    const drawer = document.getElementById('og-drawer');
+    if (burger && drawer) {
+      burger.addEventListener('click', () => {
+        const open = !drawer.hidden;
+        drawer.hidden = open;
+        burger.setAttribute('aria-expanded', String(!open));
+        burger.classList.toggle('open', !open);
+        document.body.style.overflow = open ? '' : 'hidden';
+      });
+      // Close drawer on nav link click
+      drawer.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => {
+          drawer.hidden = true;
+          burger.setAttribute('aria-expanded', 'false');
+          burger.classList.remove('open');
+          document.body.style.overflow = '';
+        });
+      });
+    }
+
+    // Reading progress bar
+    const bar = document.getElementById('og-progress');
+    if (bar) {
+      window.addEventListener('scroll', () => {
+        const doc = document.documentElement;
+        const pct = (doc.scrollTop / (doc.scrollHeight - doc.clientHeight)) * 100;
+        bar.style.width = pct + '%';
+      }, { passive: true });
+    }
+  </script>
+</body>
+</html>
+
