@@ -2,6 +2,8 @@
 import Layout from '../../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 
+function slugify(id: string) { return id.replace(/\.mdx?$/, ''); }
+
 const posts = (await getCollection('blog', ({ data }) => !data.draft))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
@@ -35,12 +37,12 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
                 )}
               </div>
               <h2 class="og-post-card-title">
-                <a href={`/blog/${post.id}/`}>{post.data.title}</a>
+                <a href={`/blog/${slugify(post.id)}/`}>{post.data.title}</a>
               </h2>
               {post.data.description && (
                 <p class="og-post-card-desc">{post.data.description}</p>
               )}
-              <a href={`/blog/${post.id}/`} class="og-post-card-link">Read more →</a>
+              <a href={`/blog/${slugify(post.id)}/`} class="og-post-card-link">Read more</a>
             </div>
           </article>
         ))}
@@ -50,77 +52,15 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
 </Layout>
 
 <style>
-.og-post-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 1.5rem;
-}
-.og-post-card {
-  background: var(--c-bg-card);
-  border: 1px solid var(--c-border);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  transition: border-color var(--t), transform var(--t), box-shadow var(--t);
-  display: flex;
-  flex-direction: column;
-}
-.og-post-card:hover {
-  border-color: var(--c-blue-mid);
-  transform: translateY(-3px);
-  box-shadow: 0 8px 32px rgba(37,99,235,.1);
-}
-.og-post-card-body {
-  padding: 1.75rem;
-  display: flex;
-  flex-direction: column;
-  gap: .75rem;
-  flex: 1;
-}
-.og-post-meta {
-  display: flex;
-  align-items: center;
-  gap: .75rem;
-  font-size: .75rem;
-  color: var(--c-text-dim);
-}
-.og-post-tag {
-  background: rgba(37,99,235,.1);
-  color: var(--c-blue-light);
-  border-radius: 999px;
-  padding: .15rem .65rem;
-  font-weight: 600;
-  font-size: .7rem;
-  letter-spacing: .04em;
-  text-transform: uppercase;
-}
-.og-post-card-title {
-  font-size: 1.05rem;
-  font-weight: 700;
-  line-height: 1.35;
-  letter-spacing: -.02em;
-  flex: 1;
-}
-.og-post-card-title a {
-  color: var(--c-text);
-  text-decoration: none;
-}
-.og-post-card-title a:hover { color: var(--c-blue-light); }
-.og-post-card-desc {
-  font-size: .85rem;
-  color: var(--c-text-soft);
-  line-height: 1.6;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-.og-post-card-link {
-  font-size: .8rem;
-  font-weight: 700;
-  letter-spacing: .05em;
-  text-transform: uppercase;
-  color: var(--c-blue-light);
-  text-decoration: none;
-  margin-top: auto;
-}
+.og-post-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:1.5rem; }
+.og-post-card { background:var(--c-bg-card); border:1px solid var(--c-border); border-radius:var(--radius-lg); overflow:hidden; transition:border-color var(--t),transform var(--t),box-shadow var(--t); display:flex; flex-direction:column; }
+.og-post-card:hover { border-color:var(--c-blue-mid); transform:translateY(-3px); box-shadow:0 8px 32px rgba(37,99,235,.1); }
+.og-post-card-body { padding:1.75rem; display:flex; flex-direction:column; gap:.75rem; flex:1; }
+.og-post-meta { display:flex; align-items:center; gap:.75rem; font-size:.75rem; color:var(--c-text-dim); }
+.og-post-tag { background:rgba(37,99,235,.1); color:var(--c-blue-light); border-radius:999px; padding:.15rem .65rem; font-weight:600; font-size:.7rem; letter-spacing:.04em; text-transform:uppercase; }
+.og-post-card-title { font-size:1.05rem; font-weight:700; line-height:1.35; letter-spacing:-.02em; flex:1; }
+.og-post-card-title a { color:var(--c-text); text-decoration:none; }
+.og-post-card-title a:hover { color:var(--c-blue-light); }
+.og-post-card-desc { font-size:.85rem; color:var(--c-text-soft); line-height:1.6; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; }
+.og-post-card-link { font-size:.8rem; font-weight:700; letter-spacing:.05em; text-transform:uppercase; color:var(--c-blue-light); text-decoration:none; margin-top:auto; }
 </style>
