@@ -35,12 +35,12 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
                 )}
               </div>
               <h2 class="og-post-card-title">
-                <a href={`/blog/${post.slug}/`}>{post.data.title}</a>
+                <a href={`/blog/${post.id}/`}>{post.data.title}</a>
               </h2>
               {post.data.description && (
                 <p class="og-post-card-desc">{post.data.description}</p>
               )}
-              <a href={`/blog/${post.slug}/`} class="og-post-card-link">Read more →</a>
+              <a href={`/blog/${post.id}/`} class="og-post-card-link">Read more →</a>
             </div>
           </article>
         ))}
@@ -124,4 +124,3 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
   margin-top: auto;
 }
 </style>
-

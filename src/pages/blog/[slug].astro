@@ -1,18 +1,18 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { getCollection, type CollectionEntry } from 'astro:content';
+import { getCollection, render, type CollectionEntry } from 'astro:content';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog', ({ data }) => !data.draft);
   return posts.map(post => ({
-    params: { slug: post.slug },
+    params: { slug: post.id },
     props: { post },
   }));
 }
 
 interface Props { post: CollectionEntry<'blog'>; }
 const { post } = Astro.props;
-const { Content } = await post.render();
+const { Content } = await render(post);
 
 const formattedDate = post.data.date.toLocaleDateString('en-US', {
   year: 'numeric', month: 'long', day: 'numeric',
@@ -23,8 +23,6 @@ const formattedDate = post.data.date.toLocaleDateString('en-US', {
   title={post.data.title}
   description={post.data.description ?? `${post.data.title} — Orion's Guard cybersecurity blog.`}
 >
-
-  <!-- Reading progress bar fills via JS in Layout -->
 
   <div class="og-page-hero">
     <div class="og-page-hero-inner">
@@ -120,4 +118,3 @@ const formattedDate = post.data.date.toLocaleDateString('en-US', {
   .og-post-sidebar { display: none; }
 }
 </style>
-
